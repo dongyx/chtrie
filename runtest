@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+diff -u <(./run.tmp < test.in) test.out
+echo All tests passed.
