@@ -85,6 +85,8 @@ There are only one public type and four functions of CHTrie.
 
 	Allocate a trie with at most `n` nodes, and the alphabet size `m`.
 
+	If `n` or `m` is less than 1, they will be regulated to 1.
+
 	Node indexes are non-negative intergers less than `n`.
 	Symbols are non-negative integers less than `m`.
 
