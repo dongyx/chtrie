@@ -1,5 +1,5 @@
 .DS_Store
 *.swp
 *.tmp
-libchtrie.aca
+libchtrie.a
 chtrie.o
