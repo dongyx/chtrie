@@ -86,7 +86,6 @@ void chtrie_del(chtrie *tr, int from, int sym)
 	free(p);
 }
 
-/* free the trie */
 void chtrie_free(chtrie *tr)
 {
 	struct chtrie_edge *p, *q;
