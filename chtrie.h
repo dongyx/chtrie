@@ -3,8 +3,7 @@
 
 struct chtrie_edge {
 	struct chtrie_edge *next;
-	int from, to;
-	char sym;
+	int from, sym, to;
 };
 
 typedef struct {
