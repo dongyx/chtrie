@@ -62,7 +62,8 @@ Usage
 CHTrie provides low-level interfaces.
 It's not designed in the concepts of strings and trees, but symbols and nodes.
 
-Each node is indexed by a non-negative integer, and `0` is always the root node.
+Each node is indexed by a non-negative integer less than the maximum number of nodes specified by the `chtrie_alloc()` call, and `0` is always the root node.
+
 You could use the `chtrie_walk()` function to walk from one node to its child.
 The `chtrie_walk()` function also provides an argument that determines whether to create a new node if the child didn't exist.
 
@@ -83,7 +84,8 @@ There are only one public type and four functions of CHTrie.
 
 	Allocate a trie with at most `n` nodes, and the alphabet size `m`.
 
-	Symbols are defined to be non-negative integers less than `m`.
+	Node indexes are non-negative intergers less than `n`.
+	Symbols are non-negative integers less than `m`.
 
 	Upon success, return a pointer to the trie.
 	Otherwise, return `NULL` and set `errno`.
@@ -99,7 +101,10 @@ There are only one public type and four functions of CHTrie.
 	and `sym` must be a non-negative integer less than the alphabet size,
 	or the behavior is undefined.
 	
-	Upon success, return the index of the child.
+	Upon success, return the index of the child
+	which is a non-negative integer less than the maximum number of nodes
+	specified by the `chtrie_alloc()` call.
+
 	Otherwise, return -1.
 	
 	If `creat` is non-zero and this routine fails, `errno` will be set.
