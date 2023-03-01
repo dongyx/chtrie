@@ -17,7 +17,8 @@ typedef struct {
  *
  * If `n` or `m` is less than 1, they will be regulated to 1.
  *
- * Node indexes are non-negative intergers less than `n`.
+ * Nodes in the trie are indexed by non-negative integers less than `n`.
+ * The root node is indexed by 0.
  * Symbols are non-negative integers less than `m`.
  *
  * Upon success, return a pointer to the trie.

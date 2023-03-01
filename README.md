@@ -38,7 +38,7 @@ We could prove that **the time complexity of transition from one node to another
 
 See [my paper](https://arxiv.org/abs/2302.03690) for the analysis and proof.
 
-Compared to other compressed trie variants like *double array trie*, or using `n` hash tables each for a node, this variant provides stable space consumption and is very easy to implement.
+Compared to other compressed trie variants like *double array trie*, or using `n` hash tables each for a node, this variant provides **stable space consumption** and is very **easy to implement**.
 
 Installation
 ------------
@@ -63,7 +63,10 @@ Usage
 CHTrie provides low-level interfaces.
 It's not designed in the concepts of strings and trees, but symbols and nodes.
 
-Each node is indexed by a non-negative integer less than the maximum number of nodes specified by the `chtrie_alloc()` call, and `0` is always the root node.
+Each node is indexed by a non-negative integer less than the maximum number of nodes specified by the `chtrie_alloc()` call.
+The root node is indexed by 0.
+
+Each symbol is a non-negative integer less than the alphabet size specified by the `chtrie_alloc()` call.
 
 You could use the `chtrie_walk()` function to walk from one node to its child.
 The `chtrie_walk()` function also provides an argument that determines whether to create a new node if the child didn't exist.
@@ -87,7 +90,8 @@ There are only one public type and four functions of CHTrie.
 
 	If `n` or `m` is less than 1, they will be regulated to 1.
 
-	Node indexes are non-negative intergers less than `n`.
+	Nodes in the trie are indexed by non-negative integers less than `n`.
+	The root node is indexed by 0.
 	Symbols are non-negative integers less than `m`.
 
 	Upon success, return a pointer to the trie.
@@ -96,7 +100,7 @@ There are only one public type and four functions of CHTrie.
 - `int chtrie_walk(chtrie *tr, int from, int sym, int creat)`
 
 	Walk from one node to its child.
-	
+
 	If the child didn't exist and `creat` is non-zero,
 	a new node will be created.
 	
