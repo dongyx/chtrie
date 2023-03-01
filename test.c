@@ -40,6 +40,7 @@ int main(void)
 		line[strcspn(line, "\n")] = '\0';
 		printf("%d\n", query(line) ? 1 : 0);
 	}
+	chtrie_free(tr);
 	return 0;
 }
 

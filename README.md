@@ -176,6 +176,7 @@ This example illustrates the common usage of CHTrie, e.g. how to associate addit
 			line[strcspn(line, "\n")] = '\0';
 			printf("%d\n", query(line) ? 1 : 0);
 		}
+		chtrie_free(tr);
 		return 0;
 	}
 
