@@ -13,7 +13,9 @@ typedef struct {
 	int maxn, alphsz, ecap;
 } chtrie;
 
-/* allocate a trie with at most `n` nodes, and the alphabet with size `m`
+/* allocate a trie with at most `n` nodes, and the alphabet size `m`
+ *
+ * Symbols are defined to be non-negative integers less than `m`.
  *
  * Upon success, return a pointer to the trie.
  * Otherwise, return `NULL` and set `errno`.
@@ -24,6 +26,10 @@ chtrie *chtrie_alloc(int n, int m);
  *
  * If the child didn't exist and `creat` is non-zero,
  * a new node will be created.
+ *
+ * `from` must be a valid node index,
+ * and `sym` must be a non-negative integer less than the alphabet size,
+ * or the behavior is undefined.
  *
  * Upon success, return the index of the child.
  * Otherwise, return -1.
@@ -36,7 +42,10 @@ int chtrie_walk(chtrie *tr, int from, int sym, int creat);
  *
  * If the child doesn't exist, the trie shall be left unchanged.
  *
- * The chile node must be a leaf, or the behavior is undefined.
+ * `from` must be a valid node index,
+ * and `sym` must be a non-negative integer less than the alphabet size,
+ * and the child node must be a leaf if it exists,
+ * or the behavior is undefined.
  */
 void chtrie_del(chtrie *tr, int from, int sym);
 
