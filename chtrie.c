@@ -71,7 +71,7 @@ void chtrie_del(chtrie *tr, int from, int sym)
 	struct chtrie_edge *p, *q;
 	unsigned long h;
 
-	h = (unsigned long)from + sym;
+	h = (unsigned long)from*tr->alphsz + sym;
 	h %= tr->ecap;
 	for (p = tr->etab[h], q = NULL; p; q = p, p = p->next)
 		if (p->from == from && p->sym == sym)
