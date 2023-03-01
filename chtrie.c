@@ -7,7 +7,6 @@
 chtrie *chtrie_alloc(int n, int m)
 {
 	chtrie *tr;
-	int i;
 
 	if (n < 1)
 		n = 1;
