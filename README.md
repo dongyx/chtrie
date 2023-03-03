@@ -1,12 +1,12 @@
-CHTrie
-======
+CH-Trie
+=======
 
-*CHTrie* is the official C library of the *coordinate hash trie*.
+*CH-Trie* is the official C library of the *coordinate hash trie*.
 See [the *Coordinate Hash Trie*](#coordinate-hash-trie) section.
 
-CHTrie is designed for arbitrary symbols, not just characters.
+CH-Trie is designed for arbitrary symbols, not just characters.
 Instead of providing high-level string set/dictionary interfaces,
-CHTrie provides low-level interfaces making you implement your own trie-based data structures.
+CH-Trie provides low-level interfaces making you implement your own trie-based data structures.
 See [the *Usage* section](#usage).
 
 
@@ -43,24 +43,24 @@ Compared to other compressed trie variants like *double array trie*, or using `n
 Installation
 ------------
 
-CHTrie requires a C89 compiler and POSIX `errno` definitions.
+CH-Trie requires a C89 compiler and POSIX `errno` definitions.
 
-To install CHTrie as header files and a static library into the system:
+To install CH-Trie as header files and a static library into the system:
 
 	make
 	sudo make install
 
-By default, CHTrie is installed to `/usr/local`.
-To link CHTrie, use the `-l chtrie` option on your compiler.
+By default, CH-Trie is installed to `/usr/local`.
+To link CH-Trie, use the `-l chtrie` option on your compiler.
 
-It's also simple to embed CHTrie into your project.
+It's also simple to embed CH-Trie into your project.
 Just include `chtrie.h`.
 Compile and link `chtrie.c`.
 
 Usage
 -----
 
-CHTrie provides low-level interfaces.
+CH-Trie provides low-level interfaces.
 It's not designed in the concepts of strings and trees, but symbols and nodes.
 
 Each node is indexed by a non-negative integer less than the maximum number of nodes specified by the `chtrie_alloc()` call.
@@ -76,8 +76,8 @@ it's easy to associate additional information with nodes, by using external data
 For example, we could define an array `nchild[]` where `nchild[i]` stores the number of children of node `i`,
 or you could maintain whether a node is a termination node, which node is its parent node, and so on.
 
-The low-level nature brings both flexibility and simplicity to CHTrie.
-There are only one public type and four functions of CHTrie.
+The low-level nature brings both flexibility and simplicity to CH-Trie.
+There are only one public type and four functions of CH-Trie.
 
 - `typedef ... chtrie`
 
@@ -143,7 +143,7 @@ After the trie is built, it reads lines from the standard input.
 For each line, the program prints `1` if the line is in the trie.
 Otherwise, the program prints `0`.
 
-This example illustrates the common usage of CHTrie, e.g. how to associate additional information with a node.
+This example illustrates the common usage of CH-Trie, e.g. how to associate additional information with a node.
 
 	#include <string.h>
 	#include <stdlib.h>
