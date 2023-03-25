@@ -2,7 +2,7 @@ CH-Trie
 =======
 
 *CH-Trie* is the official C library of the *coordinate hash trie*.
-See [the *Coordinate Hash Trie*](#coordinate-hash-trie) section.
+See [the *Coordinate Hash Trie* section](#coordinate-hash-trie).
 
 CH-Trie is designed for arbitrary symbols, not just characters.
 Instead of providing high-level string set/dictionary interfaces,
@@ -60,31 +60,16 @@ Compile and link `chtrie.c`.
 Usage
 -----
 
-CH-Trie provides low-level interfaces.
-It's not designed in the concepts of strings and trees, but symbols and nodes.
+Include the following header files to use CH-Trie:
 
-Each node is indexed by a non-negative integer less than the maximum number of nodes specified by the `chtrie_alloc()` call.
-The root node is indexed by 0.
-
-Each symbol is a non-negative integer less than the alphabet size specified by the `chtrie_alloc()` call.
-
-You could use the `chtrie_walk()` function to walk from one node to its child.
-The `chtrie_walk()` function also provides an argument that determines whether to create a new node if the child didn't exist.
-
-Because nodes are indexed by non-negative integers,
-it's easy to associate additional information with nodes, by using external data structures.
-For example, we could define an array `nchild[]` where `nchild[i]` stores the number of children of node `i`,
-or you could maintain whether a node is a termination node, which node is its parent node, and so on.
-
-The low-level nature brings both flexibility and simplicity to CH-Trie.
-There are only one public type and four functions of CH-Trie.
+	#include <stddef.h>
+	#include "chtrie.h"
 
 - `typedef ... chtrie`
 
 	A `chtrie` instance represents a trie.
 
-
-- `chtrie *chtrie_alloc(int n, int m)`
+- `chtrie *chtrie_alloc(size_t n, size_t m)`
 
 	Allocate a trie with at most `n` nodes, and the alphabet size `m`.
 
@@ -104,16 +89,8 @@ There are only one public type and four functions of CH-Trie.
 	If the child didn't exist and `creat` is non-zero,
 	a new node will be created.
 	
-	`from` must be a valid node index,
-	and `sym` must be a non-negative integer less than the alphabet size,
-	or the behavior is undefined.
-	
-	Upon success, return the index of the child
-	which is a non-negative integer less than the maximum number of nodes
-	specified by the `chtrie_alloc()` call.
-
+	Upon the child is found or created, return the index of the child.
 	Otherwise, return -1.
-	
 	If `creat` is non-zero and this routine fails, `errno` will be set.
 	
 - `void chtrie_del(chtrie *tr, int from, int sym)`
@@ -124,11 +101,6 @@ There are only one public type and four functions of CH-Trie.
 	or the behavior is undefined.
 	
 	If the child doesn't exist, the trie shall be left unchanged.
-	
-	`from` must be a valid node index,
-	and `sym` must be a non-negative integer less than the alphabet size,
-	or the behavior is undefined.
-	
 
 - `void chtrie_free(chtrie *tr)`
 
@@ -145,6 +117,7 @@ Otherwise, the program prints `0`.
 
 This example illustrates the common usage of CH-Trie, e.g. how to associate additional information with a node.
 
+	#include <stddef.h>
 	#include <string.h>
 	#include <stdlib.h>
 	#include <stdio.h>

@@ -3,16 +3,20 @@
 #include <limits.h>
 #include <errno.h>
 #include "chtrie.h"
+#define SZ_MAX ((size_t)-1)
+#define MIN(x, y) ((x)<(y)?(x):(y))
 
-chtrie *chtrie_alloc(int n, int m)
+chtrie *chtrie_alloc(size_t n, size_t m)
 {
 	chtrie *tr;
 
-	if (n < 1)
-		n = 1;
-	if (m < 1)
-		m = 1;
-	if (INT_MAX - (n-1) < (n-1) / 3) {
+	if (n < 1) n = 1;
+	if (m < 1) m = 1;
+	if (n > INT_MAX || m > INT_MAX) {
+		errno = ERANGE;
+		goto err;
+	}
+	if (MIN(INT_MAX, SZ_MAX) - (n-1) < (n-1) / 3) {
 		errno = ERANGE;
 		goto err;
 	}
