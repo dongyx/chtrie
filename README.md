@@ -16,8 +16,8 @@ See [the *Usage* section](#usage).
 * [Installation](#installation)
 * [Usage](#usage)
 * [Example: Implementing a String Set](#example-implementing-a-string-set)
-* [Following News](#following-news)
 * [Related Projects](#related-projects)
+* [Credits](#credits)
 
 Coordinate Hash Trie
 --------------------
@@ -209,13 +209,13 @@ This example illustrates the common usage of CH-Trie, e.g. how to associate addi
 		return it >= 0 && term[it];
 	}
 
-Following News
---------------
-
-- <https://www.dyx.name>
-- [Twitter](https://twitter.com/dongyx2)
-
 Related Projects
 ----------------
 
 - [LibACA](https://github.com/dongyx/libaca): A C Library of Aho-Corasick Algorithm Based on the Coordinate Hash Trie
+
+Credits
+-------
+
+CH-Trie was created by [DONG Yuxuan](https://www.dyx.name) in 2023.
+
